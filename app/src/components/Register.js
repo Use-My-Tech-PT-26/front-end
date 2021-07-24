@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const schema = yup.object().shape({
-    firstname: yup.string().required('first name is required').min('name must be at least 2 characters'),
-    lastname: yup.string().required('last name is required').min('name must be at least 2 characters'),
+    firstname: yup.string().required('first name is required').min('2 characters'),
+    lastname: yup.string().required('last name is required').min('2 characters'),
     male: yup.boolean().oneOf([true, false], ''),
     female: yup.boolean().oneOf([true, false], ''),
-    email: yup.string().required('email is required').min('email must be at least 6 characters'),
+    email: yup.string().required('email is required').min('6 characters'),
     phone: yup.string().required('phone is required'),
     address: yup.string().required('address is required'),
-    ssn: yup.string().required('ssn is required'),
-    income: yup.string().required('income is required')
+    ssn: yup.string().required('ssn is required')
 })
 
 export default function Register (){
@@ -35,7 +35,14 @@ export default function Register (){
         address: ''
     })
 
-    const [user, setUser] = useState({
+    const [disabled, setDisabled] = useState(true)
+
+    useEffect(() => {
+        schema.isValid(form).then(valid => setDisabled(!valid))
+    }, [form])
+  
+
+    const [setUser] = useState({
         setForm
     })
 
@@ -93,13 +100,14 @@ export default function Register (){
     return(
         <div className= 'container'>
             <div className= 'head'>
-                <h1>Use My Tech Stuff</h1>
                 <div className='Navigation'>
-                <Link to='/'>Home</Link>
+                    <Link>Register</Link>
                 </div>
             </div>
             <form id='register-form' onSubmit={onSubmit}>
-                <div>{errors.firstname}</div><div>{errors.lastname}</div><div>{errors.email}</div><div>{errors.phone}</div><div>{errors.address}</div><div>{errors.ssn}</div><div>{errors.income}</div>
+                <div style= {{color: 'red'}}>
+                    <div>{error.firstname}</div><div>{error.lastname}</div><div>{error.email}</div><div>{error.phone}</div><div>{error.address}</div><div>{error.ssn}</div>
+                </div>
             <div>
             <label>First Name
                 <input onChange={onChange} value={form.firstname} name='firstname' type='text' />
@@ -111,7 +119,7 @@ export default function Register (){
                 <input onChange={onChange}  name='male' type='checkbox' checked={form.male} />
             </label>
             <label>Female
-                <input onChange={onChange} name='male' type='checkbox' checked={form.female} />
+                <input onChange={onChange} name='female' type='checkbox' checked={form.female} />
             </label>
             <label>Email
                 <input onChange={onChange} value={form.email} name='email' type='text' />
@@ -124,9 +132,6 @@ export default function Register (){
             </label>
             <label>SSN
                 <input onChange={onChange} value={form.ssn} name='ssn' type='text' />
-            </label>
-            <label>Income
-                <input onChange={onChange} value={form.income} name='income' type='text' /> 
             </label>
             <div className='form-style-button'>
                 <button disabled={disabled} id='register-button'>Submit</button>
