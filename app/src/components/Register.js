@@ -101,7 +101,7 @@ export default function Register (){
         <div className= 'container'>
             <div className= 'head'>
                 <div className='Navigation'>
-                    <Link>Register</Link>
+                    <Link exact path='/'>Home</Link>
                 </div>
             </div>
             <form id='register-form' onSubmit={onSubmit}>

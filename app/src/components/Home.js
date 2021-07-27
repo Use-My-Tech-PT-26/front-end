@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -23,6 +23,12 @@ export default function Home () {
     const [setState] = useState({
         setHome
     })
+
+    const [disabled, setDisabled] = useState(true)
+
+    useEffect(() => {
+        schema.isValid(home).then(valid => setDisabled(!valid))
+    }, [home])
 
     const onSubmit = evt => {
         evt.preventDefault()
@@ -79,10 +85,10 @@ export default function Home () {
                         <input onChange={onChange} value={home.password} name='password' type='text' />
                     </label>
                     <div className='login-style-button'>
-                        <button id='login-button'>Login</button>
+                        <button disabled={disabled} id='login-button'>Login</button>
                     </div>
                     <div className='register-style-button'>
-                        <button id='register-button'>Register</button>
+                        <button to='Register' id='register-button'>Register</button>
                     </div>
                 </div>
             </form>
