@@ -9,7 +9,7 @@ function App() {
       <h1>Use My Tech Stuff</h1>
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='Register' component={Register} />
+        <Route exact path='/Register' component={Register} />
       </Switch>
     </div>
   );
