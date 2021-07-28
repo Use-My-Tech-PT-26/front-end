@@ -9,7 +9,8 @@ const schema = yup.object().shape({
     user: yup.boolean().oneOf([true, false], ''),
     owner: yup.boolean().oneOf([true, false], ''),
     email: yup.string().required('email is required').min('6 characters'),
-    createpassword: yup.string().required('create password is required')
+    createpassword: yup.string().required('create password is required'),
+    verifypassword: yup.string().required('create password is required')
 })
 
 export default function Register (){
@@ -19,7 +20,8 @@ export default function Register (){
         user: false,
         owner: false,
         email: '',
-        createpassword: ''
+        createpassword: '',
+        verifypassword: ''
     })
 
     const [error, setError] = useState({
@@ -28,7 +30,8 @@ export default function Register (){
         user: '',
         owner: '',
         email: '',
-        createpassword: ''
+        createpassword: '',
+        verifypassword: ''
     })
 
     const [disabled, setDisabled] = useState(true)
@@ -50,7 +53,8 @@ export default function Register (){
             user: form.user,
             owner: form.owner,
             email: form.email,
-            createpassword: form.createpassword
+            createpassword: form.createpassword,
+            verifypassword: form.verifypassword
         }
 
         axios.post('https://reqres.in/api/users', newUser)
@@ -61,7 +65,8 @@ export default function Register (){
                 user: false,
                 owner: false,
                 email: '',
-                createpassword: ''
+                createpassword: '',
+                verifypassword: ''
             })
 
             setUser({
@@ -70,7 +75,8 @@ export default function Register (){
                 user: form.user,
                 owner: form.owner,
                 email: form.email,
-                createpassword: form.createpassword
+                createpassword: form.createpassword,
+                verifypassword: form.verifypassword
             })
         })
         .catch(error => {
@@ -94,7 +100,7 @@ export default function Register (){
         <div className= 'container'>
             <div className= 'head'>
                 <div className='Navigation'>
-                    <Link exact path='/'>Home</Link>
+                    <Link to='/'>Home</Link>
                 </div>
             </div>
             <form id='register-form' onSubmit={onSubmit}>
@@ -119,6 +125,9 @@ export default function Register (){
             </label>
             <label>Create Password
                 <input onChange={onChange} value={form.createpassword} name='create password' type='text' />
+            </label>
+            <label>Verify Password
+                <input onChange={onChange} value={form.verifypassword} name='verify password' type='text' />
             </label>
             <div className='form-style-button'>
                 <button disabled={disabled} id='register-button'>Submit</button>

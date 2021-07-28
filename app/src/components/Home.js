@@ -3,7 +3,6 @@ import * as yup from 'yup'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-
 const schema = yup.object().shape({
     username: yup.string().required('username is required').min('name must be at least 6 characters'),
     password: yup.string().required('password is required').min('name must be at least 6 characters'),
@@ -68,7 +67,7 @@ export default function Home () {
 
     return(
         <div className='container'>
-            <div className='head'>
+            <div class='center' className='head'>
                 <div className='Navigation'>
                     <Link to='Register'>Register</Link>
                 </div>
@@ -88,7 +87,7 @@ export default function Home () {
                         <button disabled={disabled} id='login-button'>Login</button>
                     </div>
                     <div className='register-style-button'>
-                        <button to='Register' id='register-button'>Register</button>
+                        <button id='register-button'>Register</button>
                     </div>
                 </div>
             </form>
