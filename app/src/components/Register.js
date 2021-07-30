@@ -180,7 +180,7 @@ export default function Register(props) {
               onChange={onChange}
               value={form.createpassword}
               name="create password"
-              type="text"
+              type="password"
             />
           </label>
           <label>

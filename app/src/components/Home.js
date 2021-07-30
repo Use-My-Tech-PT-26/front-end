@@ -117,7 +117,7 @@ export default function Home() {
               onChange={onChange}
               value={home.password}
               name="password"
-              type="text"
+              type="password"
             />
           </label>
           <div className="login-style-button">
