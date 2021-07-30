@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const schema = yup.object().shape({
     username: yup.string().required('username is required').min('name must be at least 6 characters'),
@@ -84,13 +85,33 @@ export default function Home () {
                         <input onChange={onChange} value={home.password} name='password' type='text' />
                     </label>
                     <div className='login-style-button'>
-                        <button disabled={disabled} id='login-button'>Login</button>
+                        <LoginButton disabled={disabled} id='login-button'>Login</LoginButton>
                     </div>
                     <div className='register-style-button'>
-                        <button id='register-button'>Register</button>
+                        <Button id='register-button'>Register</Button>
                     </div>
                 </div>
             </form>
         </div>
     )
 }
+
+const LoginButton = styled.button`
+padding: 5px;
+border-radius: 15px;
+margin-top: 10px;
+background-color: black;
+font-size: 1.5rem;
+color: white;
+cursor: pointer;
+`
+
+const Button = styled.button`
+padding: 5px;
+border-radius: 15px;
+margin-top: 10px;
+background-color: black;
+font-size: 1.5rem;
+color: white;
+cursor: pointer;
+`

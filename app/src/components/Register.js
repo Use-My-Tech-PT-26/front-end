@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const schema = yup.object().shape({
     firstname: yup.string().required('first name is required').min('2 characters'),
@@ -11,9 +12,9 @@ const schema = yup.object().shape({
     email: yup.string().required('email is required').min('6 characters'),
     createpassword: yup.string().required('create password is required'),
     verifypassword: yup.string().required('create password is required')
-})
+}) 
 
-export default function Register (){
+export default function Register (props){
     const [form, setForm] = useState ({
         firstname: '',
         lastname: '',
@@ -130,11 +131,21 @@ export default function Register (){
                 <input onChange={onChange} value={form.verifypassword} name='verify password' type='text' />
             </label>
             <div className='form-style-button'>
-                <button disabled={disabled} id='register-button'>Submit</button>
+                <Button disabled={disabled} id='register-button'>Submit</Button>
             </div>
         </div>
      </form>
     </div>
     )
-  
+
 }
+
+const Button = styled.button`
+padding: 5px;
+border-radius: 15px;
+margin-top: 15px;
+background-color: black;
+font-size: 1.5rem;
+color: white;
+cursor: pointer;
+`
