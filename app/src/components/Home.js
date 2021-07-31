@@ -73,20 +73,24 @@ export default function Home () {
                     <Link to='Register'>Register</Link>
                 </div>
             </div>
+            <br/>
             <form id='home-page' onSubmit={onSubmit}>
                 <div style={{color: 'red'}}>
                     <div>{error.username}</div><div>{error.password}</div>
                 </div>
                 <div>
-                    <label>Username
-                        <input onChange={onChange} value={home.username} name='username' type='text' />
+                    <label>Username:
+                        <Input onChange={onChange} value={home.username} name='username' type='text' />
                     </label>
-                    <label>Password
-                        <input onChange={onChange} value={home.password} name='password' type='text' />
+                    <br/>
+                    <label>Password:
+                        <Input onChange={onChange} value={home.password} name='password' type='text' />
                     </label>
+                    <br/>
                     <div className='login-style-button'>
                         <LoginButton disabled={disabled} id='login-button'>Login</LoginButton>
                     </div>
+                    <br/>
                     <div className='register-style-button'>
                         <Button id='register-button'>Register</Button>
                     </div>
@@ -115,3 +119,16 @@ font-size: 1.5rem;
 color: white;
 cursor: pointer;
 `
+
+const Input = styled.input.attrs(props => ({
+    type: 'text',
+    size: props.size || '.5em',
+}))`
+color: black;
+font-size: 1em;
+border: 2px solid black;
+border-radius: 3px;
+
+margin: ${props => props.size};
+padding: ${props => props.size};
+`;

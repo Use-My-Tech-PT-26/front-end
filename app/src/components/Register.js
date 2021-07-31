@@ -104,32 +104,40 @@ export default function Register (props){
                     <Link to='/'>Home</Link>
                 </div>
             </div>
+            <br/>
             <form id='register-form' onSubmit={onSubmit}>
                 <div style= {{color: 'red'}}>
                     <div>{error.firstname}</div><div>{error.lastname}</div><div>{error.email}</div><div>{error.phone}</div><div>{error.address}</div><div>{error.ssn}</div>
                 </div>
             <div>
-            <label>First Name
-                <input onChange={onChange} value={form.firstname} name='firstname' type='text' />
+            <label>First Name:
+                <Input onChange={onChange} value={form.firstname} name='firstname' type='text' />
             </label>
-            <label>Last Name
-                <input onChange={onChange} value={form.lastname} name='lastname' type='text' />
+            <br/>
+            <label>Last Name:
+                <Input onChange={onChange} value={form.lastname} name='lastname' type='text' />
             </label>
-            <label>User
-                <input onChange={onChange}  name='user' type='checkbox' checked={form.user} />
+            <br/>
+            <label>User:
+                <Input onChange={onChange}  name='user' type='checkbox' checked={form.user} />
             </label>
-            <label>Owner
-                <input onChange={onChange} name='owner' type='checkbox' checked={form.owner} />
+            <br/>
+            <label>Owner:
+                <Input onChange={onChange} name='owner' type='checkbox' checked={form.owner} />
             </label>
-            <label>Email
-                <input onChange={onChange} value={form.email} name='email' type='text' />
+            <br/>
+            <label>Email:
+                <Input onChange={onChange} value={form.email} name='email' type='text' />
             </label>
-            <label>Create Password
-                <input onChange={onChange} value={form.createpassword} name='create password' type='text' />
+            <br/>
+            <label>Create Password:
+                <Input onChange={onChange} value={form.createpassword} name='create password' type='text' />
             </label>
-            <label>Verify Password
-                <input onChange={onChange} value={form.verifypassword} name='verify password' type='text' />
+            <br/>
+            <label>Verify Password:
+                <Input onChange={onChange} value={form.verifypassword} name='verify password' type='text' />
             </label>
+            <br/>
             <div className='form-style-button'>
                 <Button disabled={disabled} id='register-button'>Submit</Button>
             </div>
@@ -149,3 +157,16 @@ font-size: 1.5rem;
 color: white;
 cursor: pointer;
 `
+
+const Input = styled.input.attrs(props => ({
+    type: 'text',
+    size: props.size || '.5em',
+}))`
+color: black;
+font-size: 1em;
+border: 2px solid black;
+border-radius: 3px;
+
+margin: ${props => props.size};
+padding: ${props => props.size};
+`;

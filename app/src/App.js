@@ -19,6 +19,7 @@ function App() {
 const H1 = styled.h1`
 font-size: 3rem;
 color: black;
+text-align: center;
 `
 
 export default App;
