@@ -27,6 +27,8 @@ export default function Home() {
     password: "",
   });
 
+  // const [error, setError] = "";
+
   const [setState] = useState({
     setHome,
   });
@@ -39,40 +41,40 @@ export default function Home() {
     schema.isValid(home).then((valid) => setDisabled(!valid));
   }, [home]);
 
-  // const onSubmit = evt => {
-  //     evt.preventDefault()
-  //     const newSignin = {
-  //         username: home.username,
-  //         password: home.password
-  //     }
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    const newSignin = {
+      username: home.username,
+      password: home.password,
+    };
 
-  //     axios.post('https://reqres.in/api/users', newSignin)
-  //     .then(res => {
-  //         setHome({
-  //             username: '',
-  //             password: ''
-  //         })
-
-  //         setState({
-  //             username: home.username,
-  //             password: home.password
-  //         })
-  //     })
-  //     .catch(error => {
-  //     })
-  // }
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("./login", home)
+    axios
+      .post("https://reqres.in/api/users", newSignin)
       .then((res) => {
-        console.log(res);
-        localStorage.setHome("token", res.data.payload);
-        push("./members");
+        setHome({
+          username: "",
+          password: "",
+        });
+
+        setState({
+          username: home.username,
+          password: home.password,
+        });
       })
-      .catch((err) => setError(err.response.data.error));
+      .catch((error) => {});
   };
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .post("/api/auth/login", home)
+  //     .then((res) => {
+  //       console.log(res);
+  //       localStorage.setHome("token", res.data.payload);
+  //       push("./members");
+  //     })
+  //     .catch((err) => err);
+  // };
 
   const setFormErrors = (name, value) => {
     yup
@@ -97,9 +99,10 @@ export default function Home() {
         </div>
       </div>
       <form id="home-page" onSubmit={onSubmit}>
-        <div style={{ color: "red" }}>
-          <div>{error.username}</div>
-          <div>{error.password}</div>
+        <div id="error" style={{ color: "red" }}>
+          {/* <div>{error.username}</div>
+          <div>{error.password}</div> */}
+          {error}
         </div>
         <div>
           <label>

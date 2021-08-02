@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 import { axiosWithAuth } from "../auth/axiosWithAuth";
 
 const schema = yup.object().shape({
@@ -49,53 +49,53 @@ export default function Register(props) {
     setForm,
   });
 
-  // const onSubmit = event => {
-  //     event.preventDefault()
-  //     const newUser = {
-  //         fistname: form.firstname,
-  //         lastname: form.lastname,
-  //         user: form.user,
-  //         owner: form.owner,
-  //         email: form.email,
-  //         createpassword: form.createpassword,
-  //         verifypassword: form.verifypassword
-  //     }
+  const onSubmit = event => {
+      event.preventDefault()
+      const newUser = {
+          fistname: form.firstname,
+          lastname: form.lastname,
+          user: form.user,
+          owner: form.owner,
+          email: form.email,
+          createpassword: form.createpassword,
+          verifypassword: form.verifypassword
+      }
 
-  //     axios.post('https://reqres.in/api/users', newUser)
-  //     .then(res => {
-  //         setForm({
-  //             firstname: '',
-  //             lastname: '',
-  //             user: false,
-  //             owner: false,
-  //             email: '',
-  //             createpassword: '',
-  //             verifypassword: ''
-  //         })
+      axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+          setForm({
+              firstname: '',
+              lastname: '',
+              user: false,
+              owner: false,
+              email: '',
+              createpassword: '',
+              verifypassword: ''
+          })
 
-  //         setUser({
-  //             firstname: form.firstname,
-  //             lastname: form.lastname,
-  //             user: form.user,
-  //             owner: form.owner,
-  //             email: form.email,
-  //             createpassword: form.createpassword,
-  //             verifypassword: form.verifypassword
-  //         })
-  //     })
-  //     .catch(error => {
-  //     })
-  // }
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("./register", form)
-      .then((res) => {
-        console.log(res);
+          setUser({
+              firstname: form.firstname,
+              lastname: form.lastname,
+              user: form.user,
+              owner: form.owner,
+              email: form.email,
+              createpassword: form.createpassword,
+              verifypassword: form.verifypassword
+          })
       })
-      .catch((err) => setError(err.response.data.error));
-  };
+      .catch(error => {
+      })
+  }
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .post("/api/auth/register", form)
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => setError(err.response.data.error));
+  // };
 
   const setFormErrors = (name, value) => {
     yup
